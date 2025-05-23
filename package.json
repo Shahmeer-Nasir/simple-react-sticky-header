@@ -1,0 +1,47 @@
+{
+  "name": "@shahmeernasir/simple-react-sticky-header",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react",
+    "sticky header",
+    "react sticky",
+    "react component"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "A lightweight and customizable sticky header component for React",
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md"
+  ],
+  "module": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahmeernasir/simple-react-sticky-header.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shahmeernasir/simple-react-sticky-header/issues"
+  },
+  "homepage": "https://github.com/shahmeernasir/simple-react-sticky-header#readme"
+}
