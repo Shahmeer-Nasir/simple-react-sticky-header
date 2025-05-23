@@ -12,23 +12,25 @@ type StickyHeaderProps = {
 
 const StickyHeader: React.FC<StickyHeaderProps> = ({ 
   children, 
-  className, 
+  className="", 
   style,
   onHeaderHeightChange,
   addScrollClassesOnBody=true,
   addScrollClassesOnHeader=true,
 }) => {
   
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const lastScrollY = useRef(0);
 
   // Handle scroll event
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      const isScrollingDown = currentScrollY > lastScrollY;
-      const isScrollingUp = currentScrollY < lastScrollY;
+      const isScrollingDown = currentScrollY > lastScrollY.current;
+      const isScrollingUp = currentScrollY < lastScrollY.current;
+      lastScrollY.current = currentScrollY;
 
       const scrollDirectionClass = isScrollingUp
         ? 'scrolling-up'
@@ -51,8 +53,6 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({
           headerRef.current.classList.add(scrollDirectionClass);
         }
       }
-
-      setLastScrollY(currentScrollY)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -63,26 +63,37 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({
   useEffect(() => {
     const updateHeaderHeight = () => {
       if (headerRef.current) {
-        const height = headerRef.current?.offsetHeight
+        const height = headerRef.current.offsetHeight
         document.documentElement.style.setProperty('--header-height', `${height}px`);
-
-        if (onHeaderHeightChange) {
-          onHeaderHeightChange(height);
-        }
+        onHeaderHeightChange?.(height);
       }
     }
-    setTimeout(() => {updateHeaderHeight()}, 300)
-    window.addEventListener('resize', updateHeaderHeight)
+
+    // Debounce utility
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        updateHeaderHeight();
+      }, 200); // 200ms debounce delay
+    };
+
+    const timeoutId = setTimeout(() => {updateHeaderHeight()}, 300); // Initial height measurement
+    window.addEventListener('resize', handleResize);
+
     return () => {
-      window.removeEventListener('resize', updateHeaderHeight)
-    }
-  }, [])
+      clearTimeout(timeoutId);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [onHeaderHeightChange])
 
   
   return (
     <header
       ref={headerRef}
-      className={`simple-react-sticky-header ${className}`}
+      className={`simple-react-sticky-header${className ? ` ${className}` : ''}`}
       style={{...style}}
     >
       {children}

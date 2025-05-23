@@ -8,6 +8,8 @@ const App = () => {
     return (
         <div>
             <StickyHeader
+                className='my-custom-header'
+                
                 onHeaderHeightChange={(h) => console.log('Header height:', h)}
             >
                 <h1>Sticky Header Content</h1>
