@@ -1,12 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@pkg': path.resolve(__dirname, '../src'),
-    },
-  },
+      '@shahmeernasir/simple-react-sticky-header': resolve(__dirname, '../dist/index.js')
+    }
+  }
 });

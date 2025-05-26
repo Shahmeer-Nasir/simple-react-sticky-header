@@ -1,7 +1,6 @@
-// import { StickyHeader } from '@shahmeernasir/simple-react-sticky-header';
+import { StickyHeader } from '@shahmeernasir/simple-react-sticky-header';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import StickyHeader from '../../src/StickyHeader';
 
 const App = () => {
     

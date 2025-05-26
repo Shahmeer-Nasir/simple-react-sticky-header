@@ -14,7 +14,7 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({
   children, 
   className="", 
   style,
-  onHeaderHeightChange=() => {},
+  onHeaderHeightChange=(h=0) => {},
   addScrollClassesOnBody=true,
   addScrollClassesOnHeader=true,
 }) => {

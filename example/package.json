@@ -1,16 +1,18 @@
 {
   "name": "example",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@shahmeernasir/simple-react-sticky-header": "^1.1.0",
+    "@shahmeernasir/simple-react-sticky-header": "^1.2.51",
     "@vitejs/plugin-react": "^4.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
