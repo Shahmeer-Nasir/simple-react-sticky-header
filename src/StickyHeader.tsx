@@ -14,12 +14,11 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({
   children, 
   className="", 
   style,
-  onHeaderHeightChange,
+  onHeaderHeightChange=() => {},
   addScrollClassesOnBody=true,
   addScrollClassesOnHeader=true,
 }) => {
   
-  // const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const lastScrollY = useRef(0);
 
